@@ -37,6 +37,7 @@ module aiFoundryAiHub 'br/public:avm/res/machine-learning-services/workspace:0.1
       // ]
       systemAssigned: true
     }
+    provisionNetworkNow: virtualNetworkEnabled ? true : null
     connections: [
       {
         name: 'connection-AzureOpenAI'
