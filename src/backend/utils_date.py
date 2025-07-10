@@ -18,7 +18,11 @@ def format_date_for_user(date_str: str, user_locale: Optional[str] = None) -> st
     try:
         date_obj = datetime.strptime(date_str, "%Y-%m-%d")
         locale.setlocale(locale.LC_TIME, user_locale or '')
-        return date_obj.strftime("%B %d, %Y")
+        try:
+            # Use '9 July 2025' format → day first, full month, year
+            return date_obj.strftime("%-d %B %Y")  # Unix/Linux
+        except ValueError:
+            return date_obj.strftime("%#d %B %Y")  # Windows fallback
     except Exception as e:
         logging.warning(f"Date formatting failed for '{date_str}': {e}")
         return date_str
