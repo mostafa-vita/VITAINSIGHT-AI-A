@@ -1,4 +1,4 @@
-"""Factory for creating agents in the Multi-Agent Custom Automation Engine."""
+"""Factory for creating agents in Multi-Agent Custom Automation Engine."""
 
 import inspect
 import logging
