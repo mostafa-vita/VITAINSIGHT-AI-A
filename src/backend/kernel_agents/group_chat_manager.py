@@ -418,7 +418,7 @@ class GroupChatManager(BaseAgent):
                 # Use the agent from the step to determine which agent to send to
                 agent = self._agent_instances[working_step.agent.value]
                 await agent.handle_action_request(action_request)
-                
+
                 # ✅ Mark completed after successful execution
                 working_step.status = StepStatus.completed
                 await self._memory_store.update_step(working_step)
