@@ -150,10 +150,10 @@ class PlannerAgent(BaseAgent):
                 AgentType.TECH_SUPPORT.value,
                 AgentType.GENERIC.value,
             ]
-            
+
             agents_list = available_agents or default_available_agents
             agents_str = ", ".join(agents_list)
-            
+
             agent_tools_list = {
                 AgentType.HR: HrTools.generate_tools_json_doc(),
                 AgentType.MARKETING: MarketingTools.generate_tools_json_doc(),
@@ -162,7 +162,7 @@ class PlannerAgent(BaseAgent):
                 AgentType.TECH_SUPPORT: TechSupportTools.generate_tools_json_doc(),
                 AgentType.GENERIC: GenericTools.generate_tools_json_doc(),
             }
-            
+
             tools_str = str(agent_tools_list)
 
             # Create the Azure AI Agent using AppConfig with string instructions
@@ -419,12 +419,12 @@ class PlannerAgent(BaseAgent):
                 logging.warning("Planner returned no steps; falling back to default 2-step plan.")
                 # Create default step data for roaming plan
                 from models.messages_kernel import AgentType
-                
+
                 class DefaultStep:
                     def __init__(self, action, agent):
                         self.action = action
                         self.agent = agent
-                
+
                 steps_data = [
                     DefaultStep(
                         action="Get information about available roaming packs and plans. Function: get_product_info",
@@ -435,7 +435,7 @@ class PlannerAgent(BaseAgent):
                         agent=AgentType.PRODUCT.value
                     )
                 ]
-                
+
                 # Update plan details for the default case
                 if not initial_goal:
                     initial_goal = "Enable roaming on mobile plan, starting next week."
