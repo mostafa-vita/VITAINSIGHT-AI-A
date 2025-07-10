@@ -369,4 +369,3 @@ class AgentFactory:
                         all_tools.append(f"{tool_class.__name__}.{name}")
 
         return all_tools
-        
