@@ -130,7 +130,7 @@ class HrTools:
     ) -> str:
         formatted_start_date = format_date_for_user(start_date, user_locale=kwargs.get("user_locale", "en_GB"))
         formatted_end_date = format_date_for_user(end_date, user_locale=kwargs.get("user_locale", "en_GB"))
-        
+
         return (
             f"##### Leave Request Processed\n"
             f"**Employee Name:** {employee_name}\n"
@@ -180,7 +180,7 @@ class HrTools:
     @kernel_function(description="Schedule a performance review for an employee.")
     async def schedule_performance_review(employee_name: str, date: str, **kwargs) -> str:
         formatted_date = format_date_for_user(date, user_locale=kwargs.get("user_locale", "en_GB"))
-        
+
         return (
             f"##### Performance Review Scheduled\n"
             f"**Employee Name:** {employee_name}\n"
@@ -253,7 +253,7 @@ class HrTools:
     @kernel_function(description="Organize a team-building activity.")
     async def organize_team_building_activity(activity_name: str, date: str, **kwargs) -> str:
         formatted_date = format_date_for_user(date, user_locale=kwargs.get("user_locale", "en_GB"))
-        
+
         return (
             f"##### Team-Building Activity Organized\n"
             f"**Activity Name:** {activity_name}\n"
@@ -289,7 +289,7 @@ class HrTools:
     @kernel_function(description="Organize a health and wellness program.")
     async def organize_wellness_program(program_name: str, date: str, **kwargs) -> str:
         formatted_date = format_date_for_user(date, user_locale=kwargs.get("user_locale", "en_GB"))
-        
+
         return (
             f"##### Health and Wellness Program Organized\n"
             f"**Program Name:** {program_name}\n"
@@ -348,7 +348,7 @@ class HrTools:
     @kernel_function(description="Schedule a wellness check for an employee.")
     async def schedule_wellness_check(employee_name: str, date: str, **kwargs) -> str:
         formatted_date = format_date_for_user(date, user_locale=kwargs.get("user_locale", "en_GB"))
-        
+
         return (
             f"##### Wellness Check Scheduled\n"
             f"**Employee Name:** {employee_name}\n"

@@ -383,10 +383,10 @@ class GroupChatManager(BaseAgent):
             current_date = datetime.now().strftime("%Y-%m-%d")
             plan = await self._memory_store.get_plan_by_session(session_id=session_id)
             user_locale = getattr(plan, 'user_locale', self._user_locale) if plan else self._user_locale
-            
+
             # Format the date before including it in HR actions
             formatted_date = format_date_for_user(current_date, user_locale=user_locale)
-            
+
             # If the action contains date-related HR tasks, ensure formatted date is used
             # This ensures HR functions like schedule_orientation_session receive locale-formatted dates
             action_with_history = action_with_history.replace(current_date, formatted_date)

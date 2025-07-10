@@ -85,7 +85,7 @@ logging.info("Added health check middleware")
 async def input_task_endpoint(input_task: InputTask, request: Request):
     """
     Receive the initial input task from the user.
-    
+
     ---
     parameters:
       - name: body
@@ -507,10 +507,10 @@ async def approve_step_endpoint(
     kernel, memory_store = await initialize_runtime_and_context(
         human_feedback.session_id, user_id
     )
-    
+
     # Extract user locale from request headers or feedback object
     user_locale = request.headers.get("X-User-Locale", human_feedback.user_locale or "en_GB")
-    
+
     client = None
     try:
         client = config.get_ai_project_client()
@@ -1148,7 +1148,7 @@ async def handle_task(request: Request):
 async def get_task_examples():
     """
     Get examples of how to use the /api/tasks endpoint with different locales.
-    
+
     Returns example request payloads for testing the user_locale functionality.
     """
     examples = {
@@ -1159,14 +1159,14 @@ async def get_task_examples():
             "user_locale": "en_US"
         },
         "schedule_orientation_uk": {
-            "task_type": "schedule_orientation", 
+            "task_type": "schedule_orientation",
             "employee_name": "Jane Smith",
             "date": "2025-07-15",
             "user_locale": "en_GB"
         },
         "process_leave_request": {
             "task_type": "process_leave_request",
-            "employee_name": "Alice Johnson", 
+            "employee_name": "Alice Johnson",
             "leave_type": "Annual Leave",
             "start_date": "2025-08-01",
             "end_date": "2025-08-15",
@@ -1179,7 +1179,7 @@ async def get_task_examples():
             "user_locale": "en_US"
         }
     }
-    
+
     return {
         "message": "Example requests for /api/tasks endpoint",
         "examples": examples,

@@ -289,7 +289,7 @@ class AgentFactory:
         # Phase 3: Create group chat manager with all agents including the planner
         # Generate the agent tools list for the GroupChatManager
         agent_tools_list = cls._generate_agent_tools_list()
-        
+
         group_chat_manager = await cls.create_agent(
             agent_type=AgentType.GROUP_CHAT_MANAGER,
             session_id=session_id,
@@ -344,19 +344,19 @@ class AgentFactory:
     @classmethod
     def _generate_agent_tools_list(cls) -> list[str]:
         """Generate a list of all available tool names across all agents.
-        
+
         Returns:
             List of tool names that can be used by agents
         """
         tool_classes = [
             HrTools,
-            MarketingTools, 
+            MarketingTools,
             ProductTools,
             ProcurementTools,
             TechSupportTools,
             GenericTools,
         ]
-        
+
         all_tools = []
         for tool_class in tool_classes:
             # Get all methods from the tool class
@@ -367,7 +367,5 @@ class AgentFactory:
                     method = getattr(tool_class, name)
                     if callable(method):
                         all_tools.append(f"{tool_class.__name__}.{name}")
-        
+
         return all_tools
-
-
