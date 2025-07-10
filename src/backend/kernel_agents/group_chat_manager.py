@@ -13,7 +13,7 @@ from models.messages_kernel import (ActionRequest, AgentMessage, AgentType,
 # pylint: disable=E0611
 from semantic_kernel.functions.kernel_function import KernelFunction
 
-# Module-level dictionary to track step execution locks
+# Module-level dictionary to the track step execution locks
 step_execution_locks: Dict[str, asyncio.Lock] = {}
 
 
