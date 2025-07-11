@@ -72,7 +72,7 @@ frontend_url = Config.FRONTEND_SITE_NAME
 # Add this near the top of your app.py, after initializing the app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend_url],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -683,11 +683,11 @@ async def get_plans(
     # Get system locale settings
     system_locale = locale.getdefaultlocale()
     language_code = system_locale[0] if system_locale else "unknown"
-    
+
     # Add "local_system_language_selecetd" to each plan
     for plan in list_of_plans_with_steps:
-      plan.user_locale = language_code.replace("_", "-")
-    
+        plan.user_locale = language_code.replace("_", "-")
+
     return list_of_plans_with_steps
 
 
@@ -1198,4 +1198,4 @@ async def get_task_examples():
         "usage": "POST /api/tasks with any of the example payloads to see locale-specific date formatting"
     }
 if __name__ == "__main__":
-  uvicorn.run("app_kernel:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("app_kernel:app", host="127.0.0.1", port=8000, reload=True)
