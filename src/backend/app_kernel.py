@@ -72,7 +72,7 @@ frontend_url = Config.FRONTEND_SITE_NAME
 # Add this near the top of your app.py, after initializing the app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[frontend_url],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
