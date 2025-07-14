@@ -110,7 +110,7 @@ class GroupChatManager(BaseAgent):
             # Add agent definition explicitly and remove duplicate keys
             kwargs["definition"] = agent_definition
 
-            # ✅ Remove duplicate keys to avoid "multiple values" errors
+            # Remove duplicate keys to avoid "multiple values" errors
             for key in ["agent_name", "session_id", "user_id", "memory_store", "tools", "system_message",
                         "agent_tools_list", "agent_instances", "client"]:
                 if key not in kwargs:
