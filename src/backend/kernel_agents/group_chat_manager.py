@@ -78,7 +78,7 @@ class GroupChatManager(BaseAgent):
         ]
         self._agent_tools_list = agent_tools_list or []
         self._agent_instances = agent_instances or {}
-        self._user_locale = kwargs.get("user_locale", "en_GB")  # 👈 Add this
+        self._user_locale = kwargs.get("user_locale", "en_GB")
 
         # Create the Azure AI Agent for group chat operations
         # This will be initialized in async_init
@@ -454,6 +454,6 @@ class GroupChatManager(BaseAgent):
             agent = self._agent_instances[step.agent.value]
             await agent.handle_action_request(
                 action_request,
-                user_locale=self._user_locale  # 👈 Add this
+                user_locale=self._user_locale
             )  # this function is in base_agent.py
             logging.info(f"Sent ActionRequest to {step.agent.value}")

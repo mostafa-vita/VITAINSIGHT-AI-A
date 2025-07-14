@@ -156,7 +156,7 @@ async def input_task_endpoint(input_task: InputTask, request: Request):
             user_id=user_id,
             memory_store=memory_store,
             client=client,
-            user_locale=user_locale,  # ✅ Add this
+            user_locale=user_locale,
         )
 
         group_chat_manager = agents[AgentType.GROUP_CHAT_MANAGER.value]
@@ -300,7 +300,7 @@ async def human_feedback_endpoint(human_feedback: HumanFeedback, request: Reques
         user_id=user_id,
         memory_store=memory_store,
         client=client,
-        user_locale=user_locale,  # ✅ Add this
+        user_locale=user_locale,
     )
 
     if human_agent is None:
@@ -523,7 +523,7 @@ async def approve_step_endpoint(
         user_id=user_id,
         memory_store=memory_store,
         client=client,
-        user_locale=user_locale,  # ✅ Add this
+        user_locale=user_locale,
     )
 
     # Send the approval to the group chat manager

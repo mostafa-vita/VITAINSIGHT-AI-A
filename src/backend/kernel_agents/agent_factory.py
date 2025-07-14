@@ -197,7 +197,7 @@ class AgentFactory:
         temperature: float = 0.0,
         memory_store: Optional[CosmosMemoryContext] = None,
         client: Optional[Any] = None,
-        user_locale: str = "en_GB",  # ✅ Add this
+        user_locale: str = "en_GB",
     ) -> Dict[AgentType, BaseAgent]:
         """Create all agent types for a session in a specific order.
 
@@ -297,8 +297,8 @@ class AgentFactory:
             temperature=temperature,
             client=client,
             agent_instances=agent_instances,  # Pass agent instances to the planner
-            agent_tools_list=agent_tools_list,  # ✅ Add this
-            user_locale=user_locale,  # ✅ Add this
+            agent_tools_list=agent_tools_list,
+            user_locale=user_locale,
         )
         agents[group_chat_manager_type] = group_chat_manager
 
