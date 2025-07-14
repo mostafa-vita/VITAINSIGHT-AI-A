@@ -17,7 +17,7 @@ class HrTools:
     @staticmethod
     @kernel_function(description="Schedule an orientation session for a new employee.")
     async def schedule_orientation_session(employee_name: str, date: str) -> str:
-        # ✅ Use raw datetime for correct locale formatting
+        # Use raw datetime for correct locale formatting
         today = datetime.now()
         formatted_date = format_date_for_user(today)
 
