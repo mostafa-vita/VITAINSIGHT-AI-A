@@ -6,6 +6,10 @@ from typing import Any, Dict, Optional, Type
 
 # Import the new AppConfig instance
 from app_config import config
+from semantic_kernel.kernel import Kernel
+from semantic_kernel.core_plugins.text_plugin import TextPlugin
+from kernel_tools.kernel_to_tool import create_tool_from_kernel_function
+from semantic_kernel.core_plugins.text_plugin import TextPlugin
 from azure.ai.agents.models import (ResponseFormatJsonSchema,
                                     ResponseFormatJsonSchemaType)
 from context.cosmos_memory_kernel import CosmosMemoryContext
@@ -146,9 +150,26 @@ class AgentFactory:
         agent_type_str = cls._agent_type_strings.get(
             agent_type, agent_type.value.lower()
         )
-        tools = None
+        
+        #tools = None
 
-        # Create the agent instance using the project-based pattern
+        tools = []
+
+        try:
+            kernel = Kernel()
+            plugin = TextPlugin() 
+            kernel.add_plugin(plugin, plugin_name="text")
+            uppercase_fn = kernel.get_function("text", "uppercase")
+            uppercase_tool = create_tool_from_kernel_function(
+                uppercase_fn,
+                name="UppercaseTool",
+                description="Convert text to uppercase using SK"
+            )
+            tools.append(uppercase_tool)
+        except Exception as sk_exc:
+            logger.warning(f"SK tool injection failed: {sk_exc}")
+
+        #Create the agent instance using the project-based pattern
         try:
             # Filter kwargs to only those accepted by the agent's __init__
             agent_init_params = inspect.signature(agent_class.__init__).parameters
