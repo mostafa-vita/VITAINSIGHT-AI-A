@@ -4,3 +4,25 @@ metadata:
   template: multi-agent-custom-automation-engine-solution-accelerator@1.0
 requiredVersions:
   azd: ">=1.15.0 !=1.17.1"
+
+services:
+  backend:
+    project: ./src/backend
+    language: py
+    host: containerapp
+    docker:
+      image: backend
+      remoteBuild: true
+
+  frontend:
+    project: ./src/frontend
+    language: py
+    host: appservice
+    dist: ./dist
+    hooks:
+      prepackage:
+        windows:
+          shell: pwsh
+          run: ../../infra/scripts/package_frontend.ps1
+          interactive: true
+          continueOnError: false
