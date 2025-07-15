@@ -12,17 +12,17 @@ services:
     host: containerapp
     docker:
       image: backend
-      remoteBuild: true
+      remoteBuild: false
 
-  frontend:
-    project: ./src/frontend
-    language: py
-    host: appservice
-    dist: ./dist
-    hooks:
-      prepackage:
-        windows:
-          shell: pwsh
-          run: ../../infra/scripts/package_frontend.ps1
-          interactive: true
-          continueOnError: false
+  # frontend:
+  #   project: ./src/frontend
+  #   language: py
+  #   host: appservice
+  #   dist: ./dist
+  #   hooks:
+  #     prepackage:
+  #       windows:
+  #         shell: pwsh
+  #         run: ../../infra/scripts/package_frontend.ps1
+  #         interactive: true
+  #         continueOnError: false

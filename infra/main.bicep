@@ -228,7 +228,7 @@ param webSiteConfiguration webSiteConfigurationType = {
   containerImageName: 'macaefrontend'
   containerImageTag: imageTag
   containerName: 'backend'
-  tags: union(tags, { 'azd-service-name': 'frontend' })
+  tags: tags
   environmentResourceId: null //Default value set on module configuration
 }
 
@@ -1102,26 +1102,22 @@ module webSite 'br/public:avm/res/web/site:0.15.1' = if (webSiteEnabled) {
     name: webSiteName
     tags: webSiteConfiguration.?tags ?? tags
     location: webSiteConfiguration.?location ?? solutionLocation
-    kind: 'app,linux'
-    // kind: 'app,linux,container'
+    kind: 'app,linux,container'
     enableTelemetry: enableTelemetry
     serverFarmResourceId: webSiteConfiguration.?environmentResourceId ?? webServerFarm.?outputs.resourceId
     appInsightResourceId: applicationInsights.outputs.resourceId
     diagnosticSettings: [{ workspaceResourceId: logAnalyticsWorkspaceId }]
     publicNetworkAccess: 'Enabled' //TODO: use Azure Front Door WAF or Application Gateway WAF instead
     siteConfig: {
-      // linuxFxVersion: 'DOCKER|${webSiteConfiguration.?containerImageRegistryDomain ?? 'biabcontainerreg.azurecr.io'}/${webSiteConfiguration.?containerImageName ?? 'macaefrontend'}:${webSiteConfiguration.?containerImageTag ?? 'latest'}'
-      linuxFxVersion: 'python|3.11'
-      appCommandLine: 'python3 -m uvicorn frontend_server:app --host 0.0.0.0 --port 8000'
+      linuxFxVersion: 'DOCKER|${webSiteConfiguration.?containerImageRegistryDomain ?? 'biabcontainerreg.azurecr.io'}/${webSiteConfiguration.?containerImageName ?? 'macaefrontend'}:${webSiteConfiguration.?containerImageTag ?? 'latest'}'
     }
     appSettingsKeyValuePairs: {
-      SCM_DO_BUILD_DURING_DEPLOYMENT: 'True'
-      // DOCKER_REGISTRY_SERVER_URL: 'https://${webSiteConfiguration.?containerImageRegistryDomain ?? 'biabcontainerreg.azurecr.io'}'
-      WEBSITES_PORT: '8000'
-      // WEBSITES_CONTAINER_START_TIME_LIMIT: '1800' // 30 minutes, adjust as needed
+      SCM_DO_BUILD_DURING_DEPLOYMENT: 'true'
+      DOCKER_REGISTRY_SERVER_URL: 'https://${webSiteConfiguration.?containerImageRegistryDomain ?? 'biabcontainerreg.azurecr.io'}'
+      WEBSITES_PORT: '3000'
+      WEBSITES_CONTAINER_START_TIME_LIMIT: '1800' // 30 minutes, adjust as needed
       BACKEND_API_URL: 'https://${containerApp.outputs.fqdn}'
       AUTH_ENABLED: 'false'
-      ENABLE_ORYX_BUILD: 'True'
     }
   }
 }
